@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #0078D7;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #005a9e;
+    padding: 10px;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+nav a:hover {
+    text-decoration: underline;
+}
+.hero {
+    background-image: url('https://source.unsplash.com/1600x400/?travel,beach');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.hero h1 {
+    font-size: 3em;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+}
+.services, .contact {
+    padding: 40px 20px;
+    text-align: center;
+}
+.services h2, .contact h2 {
+    color: #0078D7;
+}
+.services div {
+    margin: 20px 0;
+}
+footer {
+    background-color: #005a9e;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
