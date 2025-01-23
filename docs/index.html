@@ -1,37 +1,227 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/waoj.css">
     <title>Travel Agency</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #0078D7;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #005a9e;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .hero {
+            background-image: url('https://source.unsplash.com/1600x400/?travel,adventure');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+        }
+        .services, .contact, .about {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .services h2, .contact h2, .about h2 {
+            color: #0078D7;
+        }
+        .service-cards {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .service-card {
+            width: 250px;
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        .service-card:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .service-card h3 {
+            color: #005a9e;
+        }
+        .service-card p {
+            font-size: 1em;
+            color: #333;
+        }
+        #contactForm {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        #contactForm input, #contactForm textarea {
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        #contactForm button {
+            background-color: #0078D7;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        #contactForm button:hover {
+            background-color: #005a9e;
+        }
+        footer {
+            background-color: #005a9e;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .popup-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .popup-content button {
+            background-color: #0078D7;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .popup-content button:hover {
+            background-color: #005a9e;
+        }
+    </style>
 </head>
 <body>
+
     <header>
-        <h1>WAOJ Travel Agency</h1>
-        <h2>Explore the World with Us!</h2>
+        <h1>Explore the World with Us!</h1>
     </header>
+
     <nav>
         <a href="#services">Services</a>
         <a href="#contact">Contact</a>
         <a href="#about">About</a>
     </nav>
+
     <section class="hero">
         <h1>Discover Beautiful Destinations</h1>
     </section>
+
+    <section id="about" class="about">
+        <h2>About Us</h2>
+        <p>We are a travel agency dedicated to helping you explore the world. Whether it's for business or leisure, we have the perfect travel packages just for you!</p>
+    </section>
+
     <section id="services" class="services">
         <h2>Our Services</h2>
-        <div>🌍 Custom Travel Packages</div>
-        <div>✈️ Flight Booking</div>
-        <div>🏨 Hotel Reservations</div>
+        <div class="service-cards">
+            <div class="service-card">
+                <h3>Custom Travel Packages</h3>
+                <p>Tailor-made packages to suit your unique travel preferences.</p>
+            </div>
+            <div class="service-card">
+                <h3>Flight Booking</h3>
+                <p>Book flights to your dream destinations at the best prices.</p>
+            </div>
+            <div class="service-card">
+                <h3>Hotel Reservations</h3>
+                <p>Exclusive discounts on hotels worldwide for your convenience.</p>
+            </div>
+        </div>
     </section>
+
     <section id="contact" class="contact">
         <h2>Contact Us</h2>
-        <p>Email: info@waojtravelagency.com</p>
-        <p>Phone: +254 111 866 555</p>
+        <p>Email: info@travelagency.com</p>
+        <p>Phone: +123-456-7890</p>
+
+        <h3>Get in touch with us</h3>
+        <form id="contactForm">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Your Message" rows="4" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
     </section>
+
     <footer>
         <p>&copy; 2025 Travel Agency. All rights reserved.</p>
+        <button onclick="openBookingPopup()">Book Now</button>
     </footer>
+
+    <!-- Popup Section -->
+    <div class="popup" id="bookingPopup">
+        <div class="popup-content">
+            <h3>Booking Confirmation</h3>
+            <p>Your booking is confirmed! We will send details to your email.</p>
+            <button onclick="closeBookingPopup()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Handle Contact Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            document.getElementById('contactForm').reset();
+        });
+
+        // Booking Popup
+        function openBookingPopup() {
+            document.getElementById('bookingPopup').style.display = 'flex';
+        }
+
+        function closeBookingPopup() {
+            document.getElementById('bookingPopup').style.display = 'none';
+        }
+    </script>
+    
 </body>
 </html>
